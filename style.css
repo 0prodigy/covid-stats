@@ -13,14 +13,15 @@ body {
 }
 
 .sidebar {
-  padding: 20px;
+  padding: 30px;
   color: rgb(235, 235, 235);
   background-color: #1a1053;
-  border-radius: 30px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
 .logo {
-  padding: 20px;
+  padding: 18px;
   font-size: 2rem;
 }
 
@@ -31,8 +32,33 @@ ul {
 .navlink {
   padding: 30px 20px;
   color: #f3f3f3;
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
   display: block;
   text-align: center;
+}
+
+.main {
+  background-color: #f7f9fd;
+  z-index: 2;
+  margin-left: -30px;
+  border-radius: 30px;
+  padding: 10px 30px;
+}
+.container {
+  padding: 20px;
+}
+.head {
+  padding: 10px;
+  margin-bottom: 2rem;
+}
+.head h1 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.head span {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #6236ff;
+  padding: 0px 20px;
 }
