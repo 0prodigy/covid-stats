@@ -151,15 +151,23 @@ ul {
 }
 .search-box {
   padding-bottom: 20px;
+  position: relative;
 }
 .search-box #searchByCountry {
   padding: 15px 10px;
   border-radius: 20px;
   border: none;
   background-color: #f0f3f7;
+  text-align: center;
 }
 
 #searchByCountry::placeholder {
+  color: #9b98b0;
+}
+.search-box .fa-search {
+  position: absolute;
+  top: 25%;
+  left: 10px;
   color: #9b98b0;
 }
 
@@ -205,4 +213,11 @@ ul {
 #myChart {
   width: 100%;
   height: 200px;
+}
+
+.navlink i,
+.fa,
+.fas {
+  display: block;
+  font-size: 20px;
 }
