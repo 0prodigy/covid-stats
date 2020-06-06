@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <title>COVID - 19 World Data</title>
   </head>
   <body>
@@ -84,10 +89,14 @@
                 </ul>
               </div>
             </aside>
+            <div class="stats">
+              <div class="map" id="map"></div>
+            </div>
           </div>
         </div>
       </main>
     </div>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js"></script>
     <script src="main.js"></script>
   </body>
 </html>
