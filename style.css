@@ -113,3 +113,54 @@ ul {
 .death {
   color: #9475ff;
 }
+
+.map-container {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgb(226, 228, 230);
+  padding: 30px;
+  border-radius: 30px;
+  margin: 1.5rem;
+  display: flex;
+}
+
+.search-box {
+  padding-bottom: 20px;
+}
+.search-box #searchByCountry {
+  padding: 15px 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #f0f3f7;
+}
+
+#searchByCountry::placeholder {
+  color: #9b98b0;
+}
+
+.country-list {
+  padding: 0 10px;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.country-list::-webkit-scrollbar {
+  background-color: #f0f3f7;
+  border-radius: 100px;
+}
+
+.country-list::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #c3c3c3;
+}
+
+.country-data {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #9e9bb3;
+  padding: 10px 5px;
+}
+
+.country-data span {
+  color: #000;
+  margin-right: 10px;
+}
