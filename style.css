@@ -122,7 +122,9 @@ ul {
   margin: 1.5rem;
   display: flex;
 }
-
+.country {
+  flex: 1;
+}
 .search-box {
   padding-bottom: 20px;
 }
@@ -163,4 +165,20 @@ ul {
 .country-data span {
   color: #000;
   margin-right: 10px;
+}
+
+.stats {
+  flex: 4;
+  padding: 10px;
+}
+
+#map {
+  padding: 10px;
+  width: 100%;
+  height: 400px;
+}
+
+#myChart {
+  width: 100%;
+  height: 200px;
 }
