@@ -31,12 +31,36 @@ ul {
 }
 
 .navlink {
-  padding: 30px 20px;
-  color: #f3f3f3;
+  padding: 20px;
+  margin: 20px 0;
+  color: #c2c0c9;
   font-size: 16px;
+  font-weight: 700;
   text-decoration: none;
   display: block;
   text-align: center;
+  z-index: 3;
+  position: relative;
+}
+
+.navlink::before {
+  display: none;
+  content: "";
+  width: 110%;
+  position: absolute;
+  height: 100%;
+  background-color: #f7f9fd;
+  z-index: -1;
+  border-radius: 10px;
+  top: 0;
+  border-top-left-radius: 5px;
+  left: 0px;
+}
+.navlink:hover::before {
+  display: block;
+}
+.navlink:hover {
+  color: #1a1053;
 }
 
 .main {
