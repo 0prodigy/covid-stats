@@ -13,6 +13,7 @@ body {
 }
 
 .sidebar {
+  flex: 1;
   padding: 30px;
   color: rgb(235, 235, 235);
   background-color: #1a1053;
@@ -44,6 +45,7 @@ ul {
   margin-left: -30px;
   border-radius: 30px;
   padding: 10px 30px;
+  flex: 9;
 }
 .container {
   padding: 20px;
@@ -61,4 +63,52 @@ ul {
   font-weight: 900;
   color: #6236ff;
   padding: 0px 20px;
+}
+
+.global-status {
+  padding: 10px;
+  width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.col-3 {
+  flex: 1;
+  max-width: 33.33%;
+  padding: 10px;
+}
+
+.status-box {
+  background-color: #fff;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  line-height: 2rem;
+}
+
+.total,
+.active,
+.recoverd,
+.death {
+  font-size: 1.8rem;
+  padding: 5px 0;
+}
+
+.total {
+  color: #fd4e71;
+}
+
+.active {
+  color: #ff751a;
+}
+
+.recoverd {
+  color: #6dd400;
+}
+
+.death {
+  color: #9475ff;
 }
