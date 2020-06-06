@@ -13,7 +13,6 @@ body {
 .wrapper {
   overflow: hidden;
   display: flex;
-  flex-wrap: wrap;
   background-color: #f7f9fd;
 }
 

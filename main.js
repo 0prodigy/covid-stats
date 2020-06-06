@@ -1,4 +1,7 @@
 window.addEventListener("load", function () {
+  let totalConfirm = [2, 56, 6, 234, 53, 234, 34, 46, 364];
+  let totalRecover = [3, 345, 3, 3, 6, 2, 64, 3, 4623, 4];
+  let totalDeath = [436, 23, 6, 345, 2345, 643, 234];
   // Map
   mapboxgl.accessToken =
     "pk.eyJ1IjoiMHByb2RpZ3kiLCJhIjoiY2tiMzUzbnh3MDE0MDJ4bnYweWhiMmt2byJ9.KSMdGJTta-W3tR5Gv0Lf9w";
@@ -23,52 +26,89 @@ window.addEventListener("load", function () {
   //chart
   var ctx = document.getElementById("myChart").getContext("2d");
   var chart = new Chart(ctx, {
-    // The type of chart we want to create
     type: "line",
-
-    // The data for our dataset
     data: {
-      labels: ["January", "February", "March", "April", "May", "June", "July"],
+      labels: ["January", "February", "March", "April", "May", "June"],
       datasets: [
         {
-          label: "Aggr. Confirmed",
-          backgroundColor: "transparent",
-          data: [0, 13, 2, 2, 5, 30, 23],
+          label: "Confirmed",
+          data: [5294041, 4333463, 5399508, 6358757, 4420028, 3660341, 3340989],
+          backgroundColor: ["transparent"],
           borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
+            "rgba(23,210,38,1)",
+            "rgba(0,255,29,0.6502976190476191)",
+          ],
+          borderWidth: 2,
+        },
+        {
+          label: "Recoverd",
+          data: [12, 19, 23, 75, 82, 23],
+          backgroundColor: ["transparent"],
+          borderColor: [
+            " rgba(208,165,32,1)",
+            "rgba(255,179,0,0.7035189075630253)",
             "rgba(255, 206, 86, 1)",
             "rgba(75, 192, 192, 1)",
             "rgba(153, 102, 255, 1)",
             "rgba(255, 159, 64, 1)",
           ],
-          devicePixelRatio: "2",
-          steppedLine: false,
+          borderWidth: 2,
         },
         {
-          label: "Recover",
-          backgroundColor: "transparent",
-          data: [0, 3, 5, 2, 10, 30, 45],
-          borderColor: ["rgba(75, 192, 192, 1)"],
-          devicePixelRatio: "2",
-          steppedLine: false,
-        },
-        {
-          label: "death",
-          backgroundColor: "transparent",
-          data: [0, 10, 5, 2, 5, 30, 40],
-          borderColor: ["rgba(235, 34, 132, 1)"],
-          steppedLine: false,
+          label: "Deaths",
+          data: [12, 19, 23, 75, 82, 23],
+          backgroundColor: ["transparent"],
+          borderColor: [
+            "rgba(208,52,32,1)",
+            "rgba(255,0,0,0.7819502801120448)",
+          ],
+          borderWidth: 2,
         },
       ],
     },
-    // Configuration options go here
     options: {
-      "border-color": "green",
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: false,
+            },
+          },
+        ],
+      },
     },
   });
 
-  getSummary();
+  // console.log(chart.data.datasets[0].data.push(5555));
+  console.log(chart.data);
+  //calling api to create chart
+
+  // console.log(totalRecover, totalDeath, totalConfirm);
+  function getDataByMonth() {
+    var req = new XMLHttpRequest();
+    var url =
+      "https://api.covid19api.com/world?from=2020-01-04T00:00:00Z&to=2020-06-04T00:00:00Z";
+    req.open("GET", url);
+    req.send();
+    req.onload = function () {
+      var res = JSON.parse(this.response);
+      chart.data.datasets[0].data = [];
+      chart.data.datasets[1].data = [];
+      chart.data.datasets[2].data = [];
+      for (var i = 0; i < res.length; i += 8) {
+        chart.data.datasets[0].data.push(res[i].TotalConfirmed);
+        chart.data.datasets[1].data.push(res[i].TotalRecovered);
+        chart.data.datasets[2].data.push(res[i].TotalDeaths);
+      }
+    };
+  }
+  getDataByMonth();
+  // console.log(totalRecover, totalDeath, totalConfirm);
+
+  //calling function on load to display data
+  // getSummary();
+
+  //getting search value and calling data after 2s
   var timer;
   var searchBtn = document.getElementById("searchByCountry");
   searchBtn.addEventListener("input", function () {
@@ -80,8 +120,11 @@ window.addEventListener("load", function () {
     }
   });
 });
+
+// storing data of all countires to perform search opration without calling api again
 var countries = [];
 
+// filltering data and call function for serach result
 function filterCountry(q) {
   q = q.toLowerCase();
   let result = countries.filter(function (country) {
@@ -92,6 +135,7 @@ function filterCountry(q) {
   displayCountryStats(result);
 }
 
+// getting and sotring data for display stats
 function getSummary() {
   var req = new XMLHttpRequest();
   var url = "https://api.covid19api.com/summary";
@@ -100,13 +144,14 @@ function getSummary() {
   req.onload = function () {
     let res = JSON.parse(this.response);
     countries = res.Countries;
-    console.log(countries);
+    // console.log(countries);
     // res = res.Global;
     displaySummary(res.Global);
     displayCountryStats(res.Countries);
   };
 }
 
+//display data on html page
 function displaySummary(res) {
   var total = document.querySelector(".total");
   var active = document.querySelector(".active");
@@ -118,6 +163,7 @@ function displaySummary(res) {
   death.textContent = res.TotalDeaths;
 }
 
+// display data country wise
 function displayCountryStats(res) {
   var countrylist = document.querySelector(".country-list ul");
   countrylist.textContent = "";
