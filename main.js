@@ -69,16 +69,38 @@ window.addEventListener("load", function () {
   });
 
   getSummary();
+  var timer;
+  var searchBtn = document.getElementById("searchByCountry");
+  searchBtn.addEventListener("input", function () {
+    clearTimeout(timer);
+    if (searchBtn.value) {
+      timer = setTimeout(function () {
+        filterCountry(searchBtn.value);
+      }, 2000);
+    }
+  });
 });
-let summary = [];
+var countries = [];
+
+function filterCountry(q) {
+  q = q.toLowerCase();
+  let result = countries.filter(function (country) {
+    if (country.Country.toLowerCase().indexOf(q) != -1) {
+      return country;
+    }
+  });
+  displayCountryStats(result);
+}
+
 function getSummary() {
   var req = new XMLHttpRequest();
   var url = "https://api.covid19api.com/summary";
   req.open("GET", url);
   req.send();
   req.onload = function () {
-    let summary = JSON.parse(this.response);
-    console.log(res);
+    let res = JSON.parse(this.response);
+    countries = res.Countries;
+    console.log(countries);
     // res = res.Global;
     displaySummary(res.Global);
     displayCountryStats(res.Countries);
@@ -99,13 +121,17 @@ function displaySummary(res) {
 function displayCountryStats(res) {
   var countrylist = document.querySelector(".country-list ul");
   countrylist.textContent = "";
-  for (var i = 0; i < res.length; i++) {
-    var li = document.createElement("li");
-    li.setAttribute("class", "country-data");
-    var span = document.createElement("span");
-    let name = res[i].Country;
-    span.textContent = res[i].TotalConfirmed;
-    li.append(span, name);
-    countrylist.append(li);
+  if (res.length == 0) {
+    countrylist.innerHTML = "<li><h2>No data of this country</h2></li>";
+  } else {
+    for (var i = 0; i < res.length; i++) {
+      var li = document.createElement("li");
+      li.setAttribute("class", "country-data");
+      var span = document.createElement("span");
+      let name = res[i].Country;
+      span.textContent = res[i].TotalConfirmed;
+      li.append(span, name);
+      countrylist.append(li);
+    }
   }
 }
