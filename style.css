@@ -239,6 +239,23 @@ ul {
   display: block !important;
 }
 
+.img-fluid {
+  max-width: 100%;
+  border-radius: 20px;
+}
+.content {
+  padding: 20px;
+}
+.content h1 {
+  margin-bottom: 1.3rem;
+}
+.content p {
+  color: rgb(44, 43, 43);
+  margin-bottom: 2rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+}
+
 @media (max-width: 786px) {
   .col-3 {
     flex: 50%;
