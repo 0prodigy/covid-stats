@@ -1,7 +1,4 @@
 window.addEventListener("load", function () {
-  let totalConfirm = [2, 56, 6, 234, 53, 234, 34, 46, 364];
-  let totalRecover = [3, 345, 3, 3, 6, 2, 64, 3, 4623, 4];
-  let totalDeath = [436, 23, 6, 345, 2345, 643, 234];
   // Map
   mapboxgl.accessToken =
     "pk.eyJ1IjoiMHByb2RpZ3kiLCJhIjoiY2tiMzUzbnh3MDE0MDJ4bnYweWhiMmt2byJ9.KSMdGJTta-W3tR5Gv0Lf9w";
@@ -34,10 +31,7 @@ window.addEventListener("load", function () {
           label: "Confirmed",
           data: [5294041, 4333463, 5399508, 6358757, 4420028, 3660341, 3340989],
           backgroundColor: ["transparent"],
-          borderColor: [
-            "rgba(23,210,38,1)",
-            "rgba(0,255,29,0.6502976190476191)",
-          ],
+          borderColor: ["rgba(253, 78, 113,1)", "rgba(255, 24, 70,0.3)"],
           borderWidth: 2,
         },
         {
@@ -45,12 +39,8 @@ window.addEventListener("load", function () {
           data: [12, 19, 23, 75, 82, 23],
           backgroundColor: ["transparent"],
           borderColor: [
-            " rgba(208,165,32,1)",
-            "rgba(255,179,0,0.7035189075630253)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
+            "rgba(23,210,38,1)",
+            "rgba(0,255,29,0.6502976190476191)",
           ],
           borderWidth: 2,
         },
@@ -82,7 +72,8 @@ window.addEventListener("load", function () {
   });
 
   // console.log(chart.data.datasets[0].data.push(5555));
-  console.log(chart.data);
+  // console.log(chart.data);
+
   //calling api to create chart
 
   // console.log(totalRecover, totalDeath, totalConfirm);
@@ -108,7 +99,7 @@ window.addEventListener("load", function () {
   // console.log(totalRecover, totalDeath, totalConfirm);
 
   //calling function on load to display data
-  // getSummary();
+  getSummary();
 
   //getting search value and calling data after 2s
   var timer;
