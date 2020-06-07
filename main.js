@@ -67,6 +67,8 @@ window.addEventListener("load", function () {
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: true,
       scales: {
         yAxes: [
           {
@@ -180,4 +182,14 @@ function displayCountryStats(res) {
       countrylist.append(li);
     }
   }
+}
+
+//toggle function
+var toggle = document.getElementById("toggler");
+
+toggle.addEventListener("click", toggleNav);
+
+function toggleNav() {
+  var nav = document.querySelector(".nav");
+  nav.classList.toggle("show");
 }
